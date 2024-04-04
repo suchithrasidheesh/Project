@@ -1,9 +1,25 @@
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'SelectRoleScreen.dart';
 
-void main(){
-  runApp(MaterialApp(
+
+
+void main()async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+        apiKey: 'AIzaSyCdNtn7rf_2aoB97ZS4FN28DltYmMOUZW8',
+        appId: '1:678340207241:android:7046b6a6c18cb669885c58',
+        messagingSenderId:'',
+        projectId:'projectdatabase-a8017',
+        storageBucket:'projectdatabase-a8017.appspot.com'
+
+    ));
+  runApp(GetMaterialApp(
     home: Splash(),
     debugShowCheckedModeBanner: false,
   ));

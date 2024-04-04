@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/Admin/AdminLogin.dart';
+import 'package:project/student/StudNavigationBar.dart';
+import 'package:project/teacher/TeacherNavigation.dart';
 
 import 'student/StudentLogin.dart';
 import 'teacher/TeacherLogin.dart';
 
 class SelectLogin extends StatelessWidget{
 
+  User? user=FirebaseAuth.instance.currentUser;
+  User? teacher=FirebaseAuth.instance.currentUser;
   @override
   Widget item(Widget Image,Widget Text,BuildContext context){
     return ClipRRect(borderRadius: BorderRadius.circular(20),
@@ -48,7 +52,9 @@ class SelectLogin extends StatelessWidget{
                 children: [
                   InkWell(
                     onTap: (){
-                      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>StudentLogin()));
+                      user == null ? Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>StudentLogin()))
+                          : Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>StudNavigationBar()));
+                      //Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>StudentLogin()));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 80),
@@ -59,19 +65,21 @@ class SelectLogin extends StatelessWidget{
                   SizedBox(width: 50,),
                   InkWell(
                     onTap: (){
-                      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>TeacherLogin()));
-                    },
+                      teacher == null ? Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>TeacherLogin()))
+                          : Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>TeacherNavigation()));
+
+                      },
                     child: item(Image(image: AssetImage('assets/images/teacher.png'),height: 70,width:double.infinity,),
                         Text('Teacher',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),context),
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15,left: 60),
-                child: OutlinedButton(onPressed: (){
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>AdminLogin()));
-                }, child:Text('AdminLogin'),style: OutlinedButton.styleFrom(foregroundColor: Colors.orange),),
-              )
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 15,left: 60),
+              //   child: OutlinedButton(onPressed: (){
+              //     Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>AdminLogin()));
+              //   }, child:Text('AdminLogin'),style: OutlinedButton.styleFrom(foregroundColor: Colors.orange),),
+              // )
             ],
           ),
         ),

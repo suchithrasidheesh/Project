@@ -4,17 +4,12 @@ import 'package:project/student/StudExamResult.dart';
 
 import 'StudNavigationBar.dart';
 
-void main(){
-  runApp(MaterialApp(home: StudExam(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
-
 class StudExam extends StatelessWidget{
   var txt=['FirstTerm','SecondTerm','AnnualExam'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightGreen[100],
         appBar: AppBar(
           title: Center(child: Text('EXAM',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
            leading: IconButton(onPressed:() {
@@ -27,6 +22,7 @@ class StudExam extends StatelessWidget{
             Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>StudExamResult()));
           },
           child: ListTile(
+            tileColor: Colors.indigoAccent,
             title: Text(txt[index]),
           ),
         );

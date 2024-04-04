@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'StudNavigationBar.dart';
 
-void main(){
-  runApp(MaterialApp(home: StudNotice(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
 
 class StudNotice extends StatelessWidget{
+  var title=['25-12-2023','26-01-2024','22-03-2024','26-03-2024'];
+  var subtitle=['Christmas Vaccation..','RepulicDay','WaterDay','Holiday and Vacation...'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellow[100],
         appBar: AppBar(
            title: Center(child: Text('NOTICE',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
            leading: IconButton(onPressed:() {
@@ -21,12 +19,13 @@ class StudNotice extends StatelessWidget{
         ),
       body:ListView.builder(itemBuilder:(context,index){
         return ListTile(
+          tileColor: Colors.pink[100],
           leading: Icon(Icons.calendar_month),
-          title: Text('10-01-2024'),
-          subtitle: Text('Holiday and Vacation...'),
+          title: Text(title[index]),
+          subtitle: Text(subtitle[index]),
 
         );
-      },itemCount:3,) ,
+      },itemCount:title.length,) ,
     );
   }
 

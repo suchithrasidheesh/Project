@@ -35,8 +35,10 @@ dependencies:
   image_picker: ^1.0.7
   firebase_core: ^2.25.4
   firebase_auth:
-  intl_phone_field: ^3.2.0
+  intl_phone_field:
   cloud_firestore: ^4.15.8
+  email_validator: ^2.1.17
+  carousel_slider: ^4.2.1
 
 
 

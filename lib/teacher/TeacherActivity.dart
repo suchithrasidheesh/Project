@@ -5,12 +5,14 @@ class TeacherActivity extends StatelessWidget{
   final Icon icn;
   final String txt;
   final Color clr;
+  final VoidCallback tap;
 
   const TeacherActivity({
     Key?key,
     required this.icn,
     required this.txt,
     required this.clr,
+    required this.tap,
 
   }):super(key: key);
 
@@ -20,8 +22,7 @@ class TeacherActivity extends StatelessWidget{
       children: [
         ClipRRect(borderRadius: BorderRadius.circular(10),
           child: InkWell(
-            onTap:(){},
-
+            onTap:tap,
             child: Container(
                 height: 40,width: 40,
                 color:clr,

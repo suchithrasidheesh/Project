@@ -1,24 +1,19 @@
-import 'dart:js';
 
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:project/student/StudExam.dart';
 import 'package:project/student/StudMessage.dart';
+import 'package:project/student/StudNotice.dart';
 import 'package:project/student/StudentActivity.dart';
 import 'package:project/student/StudentEvents.dart';
 import 'package:project/student/StudentEventsHome.dart';
 import 'package:project/student/StudentHomework.dart';
 
 class StudHome extends StatelessWidget{
-  var listtxt=['Attendence','Exam','Fees','HomeWork','Message','Notice','BusTracking'];
-
-  var Icn=[Icons.calendar_month_sharp,Icons.note_alt_sharp,Icons.book_outlined,
-    Icons.home_work,Icons.message_outlined,Icons.notes,Icons.train];
-
-  var clr=[Colors.blueGrey,Colors.purpleAccent,Colors.greenAccent,Colors.blueAccent,Colors.orangeAccent,
-    Colors.pinkAccent,Colors.purple,Colors.green,];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +23,7 @@ class StudHome extends StatelessWidget{
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title:Text('ROBERT.R',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),) ,
+            title:Text('Welcome...',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),) ,
             actions: [
               SizedBox(width: 20,),
               CircleAvatar(
@@ -77,15 +72,34 @@ class StudHome extends StatelessWidget{
               ),
             ),
           ),
-          SliverGrid.builder(gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:4),
-            itemBuilder: (context,index){
-              return Column(
-                children: [
-                  SizedBox(height: 40,),
-                  StudentActivity(icn: Icon(Icn[index]), txt:listtxt[index], clr: clr[index], onpress: ()=>tapped(index),),
-                ],
-              );
-            },itemCount:listtxt.length,),
+          SliverToBoxAdapter(
+            child:Column(
+              children: [
+                SizedBox(height: 20,),
+                Row(
+                  children:[
+                    // SizedBox(width: 15,),
+                    // StudentActivity(icn:Icon(Icons.calendar_month_sharp), txt:'Attendence', clr:Colors.blueGrey,
+                    //   tap: () { Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>StudMessage())); },),
+                    SizedBox(width: 45,),
+                    StudentActivity(icn:Icon(Icons.note_alt_sharp), txt:'Exam', clr:Colors.purpleAccent,
+                      tap: () { Get.to(()=>StudExam()); },),
+                    // SizedBox(width: 30,),
+                    // StudentActivity(icn:Icon(Icons.book_outlined), txt:'Fees', clr:Colors.greenAccent,
+                    //   tap: () {Get.to(()=>StudMessage());  },),
+                    SizedBox(width: 45,),
+                    StudentActivity(icn:Icon(Icons.home_work), txt:'HomeWork', clr:Colors.blueAccent,
+                      tap: () { Get.to(()=>HomeWork()); },),
+
+                    SizedBox(width: 45,),
+                    StudentActivity(icn:Icon(Icons.message), txt:'Message', clr:Colors.pinkAccent,
+                      tap: () {Get.to(()=>StudMessage());  },),
+
+                    SizedBox(width: 45,),StudentActivity(icn:Icon(Icons.note), txt:'Notice', clr:Colors.orangeAccent,
+                      tap: () {Get.to(()=>StudNotice());  },)
+              ],
+            )
+         ] ),),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -119,6 +133,31 @@ class StudHome extends StatelessWidget{
               ),
             ),
           ),
+          SliverToBoxAdapter(
+            child:  Column(
+              children: [
+                SizedBox(height: 30,),
+                ClipRRect(borderRadius: BorderRadius.circular(20),
+                  child: Container(height: 200,width: 300,
+                    child: CarouselSlider(
+                        items:[
+                          Image(image: AssetImage('assets/images/teacher1.png')),
+                          Image(image: AssetImage('assets/images/sports.png')),
+                          Image(image: AssetImage('assets/images/republc.png')),
+                          Image(image: AssetImage('assets/images/yoga.png')),
+
+                        ],
+                        options: CarouselOptions(
+                          aspectRatio: 2.0,
+                          enlargeCenterPage: true,
+                          scrollDirection: Axis.horizontal,
+                          autoPlay: true,
+                        ),),
+                  ),
+                ),
+              ],
+            ),
+          )
 
         ],
       ),
@@ -126,12 +165,5 @@ class StudHome extends StatelessWidget{
     );
   }
 
- void tapped(int index) {
-    if(index==0){
-      Navigator.pushReplacement(context as BuildContext,MaterialPageRoute(builder:(context)=>StudExam()));
-    }
-    else if(index==1){
-      Navigator.pushReplacement(context as BuildContext,MaterialPageRoute(builder:(context)=>StudMessage()));
-    }
- }
+
 }

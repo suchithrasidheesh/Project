@@ -1,8 +1,10 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/ForgotPassword.dart';
 
-import '../RegistrationForm.dart';
+
+import '../Helper/FirebaseHelper.dart';
+import 'RegistrationForm.dart';
 import 'StudNavigationBar.dart';
 
 class StudentLogin extends StatefulWidget{
@@ -11,6 +13,12 @@ class StudentLogin extends StatefulWidget{
 }
 
 class _StudentLoginState extends State<StudentLogin> {
+
+
+
+  final stud_email_Cntrol=TextEditingController();
+  final stud_pass_cntrol=TextEditingController();
+
   var size,ht,wt;
 
   @override
@@ -35,7 +43,6 @@ class _StudentLoginState extends State<StudentLogin> {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(40),color: Colors.white70),
               child: Column(
-
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 40),
@@ -45,9 +52,11 @@ class _StudentLoginState extends State<StudentLogin> {
                   Padding(
                     padding: const EdgeInsets.only(left: 30,right:25),
                     child: TextField(
+                      controller:stud_email_Cntrol,
                       decoration: InputDecoration(
                           border:OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                           hintText: 'UserName',
+                        helperText: 'User name should be email address'
                       ),
                     ),
                   ),
@@ -55,42 +64,56 @@ class _StudentLoginState extends State<StudentLogin> {
                   Padding(
                     padding: const EdgeInsets.only(left: 30,right:25),
                     child: TextField(
+                      controller:stud_pass_cntrol,
                       decoration: InputDecoration(
                           border:OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                           hintText: 'Password',
                           suffixIcon:Icon(Icons.visibility_off_sharp)
                       ),),
                   ),
-                  SizedBox(height: 3,),
-                  TextButton(onPressed: (){
-                    Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>ForgotPassword()));
-                   }, child:Text('Forgot password?'))
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50,),
+                    child: Center(
+                      child: ElevatedButton(style:ElevatedButton.styleFrom(backgroundColor:Colors.blue),
+                          onPressed:(){
+                            FirebaseHelper()
+                                .loginUser(email:stud_email_Cntrol.text,pwd:stud_pass_cntrol.text)
+                                .then((result){
+                              if(result==null){
+                                Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>StudNavigationBar()));
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text((result)),
+                                  backgroundColor: Colors.blue, ));
+                              }
+                            });
+                          } ,
+                          child:Text('LogIn',style:TextStyle(color: Colors.white),)),
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40,left: 50),
+                    child: Row(
+                      children: [
+                        Text("Don't have an account?"),
+                        TextButton(onPressed: (){
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>RegistrationForm()));
+                        }, child:Text('SignUp Here')),
+                      ],
+                    ),
+                  )
+                  // SizedBox(height: 3,),
+                  // TextButton(onPressed: (){
+                  //   Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>ForgotPassword()));
+                  //  }, child:Text('Forgot password?'))
                 ],),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 460,),
-            child: Center(
-              child: ElevatedButton(style:ElevatedButton.styleFrom(backgroundColor:Colors.blue),
-                  onPressed:(){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>StudNavigationBar()));
-                  } , child:Text('LogIn',style:TextStyle(color: Colors.white),)),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 650,left: 50),
-            child: Row(
-              children: [
-                Text("Don't have an account?"),
-                TextButton(onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>RegistrationForm()));
-                 }, child:Text('SignUp Here')),
-              ],
-            ),
-          )
+
         ],
       ),
     );
   }
 }
+
 

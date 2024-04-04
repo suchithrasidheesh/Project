@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/student/StudMessage.dart';
-import 'package:project/student/StudentProfile.dart';
 
 import 'StudHome.dart';
+import 'StudProfile.dart';
 
 
 class StudNavigationBar extends StatefulWidget{
@@ -15,7 +15,7 @@ class _StudNavigationBarState extends State<StudNavigationBar> {
   var screen=[
     StudHome(),
     StudMessage(),
-    stuProfile(),
+    Profile(),
   ];
   int index=0;
   @override

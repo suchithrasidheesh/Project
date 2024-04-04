@@ -13,11 +13,11 @@ class group extends StatelessWidget{
               child: ListView.builder(itemBuilder: (context,index){
                 return ListTile(
                   leading: CircleAvatar(backgroundImage: AssetImage('assets/images/Boy.png'),radius: 20,),
-                  title: Text('Albert'),
-                  subtitle: Text('7B'),
+                  title: Text('Albin'),
+                  subtitle: Text('4B'),
                   trailing: Icon(Icons.call),
                 );
-              },itemCount:3,),
+              },itemCount:1,),
             )
           ],
         ),

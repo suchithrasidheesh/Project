@@ -12,6 +12,7 @@ class TeacherMessage extends StatelessWidget{
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Colors.cyanAccent[200],
         appBar: AppBar(
           title: Center(child: Text('MESSAGES',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
           leading: IconButton(onPressed:() {

@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:project/teacher/TeacherHome.dart';
+import 'package:project/teacher/TeacherLogin.dart';
 import 'package:project/teacher/TeacherMsg.dart';
-import 'package:project/teacher/TeacherProfile.dart';
+
+
+import '../Helper/TeacherHelper.dart';
 
 
 class TeacherNavigation extends StatefulWidget{
@@ -14,7 +19,8 @@ class _TeacherNavigationState extends State<TeacherNavigation> {
   var screen=[
     TeacherHome(),
     TeacherMessage(),
-    TeacherProfile()
+
+   // TeacherProfile()
   ];
   int index=0;
   @override
@@ -34,7 +40,11 @@ class _TeacherNavigationState extends State<TeacherNavigation> {
           items:[
             BottomNavigationBarItem(icon:Icon(Icons.home,),label: 'Home',backgroundColor: Colors.blueGrey),
             BottomNavigationBarItem(icon:Icon(Icons.message),label: 'Message'),
-            BottomNavigationBarItem(icon:Icon(Icons.person),label: 'Profile'),
+            BottomNavigationBarItem(icon:InkWell(
+                onTap: (){
+                    TeacherHelper().logout().then((value) =>Get.to(()=>TeacherLogin()));
+                },
+                child: Icon(Icons.logout)),label: 'LogOut'),
           ]),
     );
   }
