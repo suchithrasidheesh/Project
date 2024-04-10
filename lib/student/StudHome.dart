@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:project/Helper/FirebaseHelper.dart';
 import 'package:project/student/StudExam.dart';
 import 'package:project/student/StudMessage.dart';
 import 'package:project/student/StudNotice.dart';
@@ -12,6 +13,7 @@ import 'package:project/student/StudentActivity.dart';
 import 'package:project/student/StudentEvents.dart';
 import 'package:project/student/StudentEventsHome.dart';
 import 'package:project/student/StudentHomework.dart';
+import 'package:project/student/StudentLogin.dart';
 
 class StudHome extends StatelessWidget{
 
@@ -25,9 +27,15 @@ class StudHome extends StatelessWidget{
           SliverAppBar(
             title:Text('Welcome...',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),) ,
             actions: [
-              SizedBox(width: 20,),
-              CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/Boy.png')) ,
+              SizedBox(width: 40,),
+              InkWell(
+                onTap: (){
+                  FirebaseHelper()
+                      .logout()
+                      .then((value) =>Get.to(StudentLogin()));
+                },
+
+                  child: Icon(Icons.logout,size: 20,)),
               SizedBox(height: 40,width: 20,),
             ],
             bottom: AppBar(

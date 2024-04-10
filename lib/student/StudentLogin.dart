@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 
 import '../Helper/FirebaseHelper.dart';
+import '../SelectRoleScreen.dart';
 import 'RegistrationForm.dart';
 import 'StudNavigationBar.dart';
 
@@ -101,6 +102,14 @@ class _StudentLoginState extends State<StudentLogin> {
                         }, child:Text('SignUp Here')),
                       ],
                     ),
+                  ),
+                  SizedBox(height: 20,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50),
+                    child:
+                    ElevatedButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context)=>SelectLogin()));
+                      }, child:Text('Back')),
                   )
                   // SizedBox(height: 3,),
                   // TextButton(onPressed: (){

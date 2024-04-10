@@ -3,9 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:project/teacher/Exam.dart';
+import 'package:project/teacher/Notice.dart';
 import 'package:project/teacher/TeacherActivity.dart';
 import 'package:project/teacher/TeacherHomework.dart';
 import 'package:project/teacher/TeacherMsg.dart';
+import 'package:project/teacher/TimeTable.dart';
 
 import '../Helper/TeacherHelper.dart';
 import 'TeacherLogin.dart';
@@ -66,20 +69,20 @@ class _TeacherHomeState extends State<TeacherHome> {
                   Row(
                       children:[
                         const SizedBox(width: 15,),
-                        // TeacherActivity(icn:Icon(Icons.calendar_month_sharp), txt:'Attendence', clr:Colors.blueGrey,
-                        //   tap: () { Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>TeacherMessage())); },),
+                        TeacherActivity(icn:Icon(Icons.note_alt), txt:'Exam', clr:Colors.blueGrey,
+                           tap: () { Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>Exam())); },),
                         SizedBox(width: 25,),
                         TeacherActivity(icn:Icon(Icons.note), txt:'TimeTable', clr:Colors.orangeAccent,
-                          tap: () {Get.to(()=>TeacherMessage());  },),
-                        SizedBox(width: 40,),
+                          tap: () {Get.to(()=>TimeTable());  },),
+                        SizedBox(width: 30,),
                         TeacherActivity(icn:Icon(Icons.home_work), txt:'HomeWork', clr:Colors.blueAccent,
                           tap: () { Get.to(()=>homeWork()); },),
-                        SizedBox(width: 45,),
+                        SizedBox(width: 35,),
                         TeacherActivity(icn:Icon(Icons.message), txt:'Message', clr:Colors.pinkAccent,
                           tap: () {Get.to(()=>TeacherMessage());  },),
-                        SizedBox(width: 45,),
-                      TeacherActivity(icn:Icon(Icons.note), txt:'Notice', clr:Colors.orangeAccent,
-                        tap: () {Get.to(()=>TeacherMessage());  },),
+                        SizedBox(width: 25,),
+                      TeacherActivity(icn:Icon(Icons.mail), txt:'Notice', clr:Colors.orangeAccent,
+                        tap: () {Get.to(()=>Notice());  },),
                       // SizedBox(width: 25,),
                       // TeacherActivity(icn:Icon(Icons.train_outlined), txt:'BusTracking', clr:Colors.green,
                       //   tap: () { Get.to(()=>TeacherMessage()); },),

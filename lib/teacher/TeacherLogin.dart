@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/SelectRoleScreen.dart';
 import 'package:project/teacher/TeacherNavigation.dart';
 import 'package:project/teacher/TreacherRegistration.dart';
 
@@ -100,6 +101,14 @@ class _TeacherLoginState extends State<TeacherLogin> {
                         }, child:Text('SignUp Here')),
                       ],
                     ),
+                  ),
+                  SizedBox(height: 20,),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30,left: 50),
+                    child:
+                        ElevatedButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder:(context)=>SelectLogin()));
+                         }, child:Text('Back')),
                   )
                 ],
               ),

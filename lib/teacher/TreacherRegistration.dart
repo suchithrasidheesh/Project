@@ -75,7 +75,7 @@ class _teacherRegistrationState extends State<teacherRegistration> {
      await register.add({
           'Email':email_control.text,
           'Password':pass_control.text,
-          'Name':name_cntrl.text,
+          'Name':name_cntrl.text.toUpperCase(),
      }).then((value) {
        TeacherHelper().register(email:email_control.text, pwd:pass_control.text)
            .then((value){

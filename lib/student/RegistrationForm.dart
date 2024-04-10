@@ -154,11 +154,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
           class_cntrlr.text.isNotEmpty&&Fathername_cntrlr.text.isNotEmpty&&
           division_cntrlr.text.isNotEmpty&&Eml_cntrlr.text.isNotEmpty&&pass_cntrlr.text.isNotEmpty) {
         await usercollection.add({
-        'Name':name_cntrlr.text,
-        'AdNo':ad_cntrlr.text,
-        'Class':class_cntrlr.text,
-        'FatherName':Fathername_cntrlr.text,
-        'Division':division_cntrlr.text,
+        'Name':name_cntrlr.text.toUpperCase(),
+        'AdNo':ad_cntrlr.text.toUpperCase(),
+        'Class':class_cntrlr.text.toUpperCase(),
+        'FatherName':Fathername_cntrlr.text.toUpperCase(),
+        'Division':division_cntrlr.text.toUpperCase(),
         'Email':Eml_cntrlr.text,
         'Password':pass_cntrlr.text,
         }).then((value){

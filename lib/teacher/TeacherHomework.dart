@@ -30,7 +30,7 @@ class _homeWorkState extends State<homeWork> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent[200],
-        title: Center(child: Text('HomeWork')),
+        title: Text('HomeWork'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -73,7 +73,7 @@ class _homeWorkState extends State<homeWork> {
              }, child:Text('Publish now')),
             SizedBox(height: 10,),
             ElevatedButton(onPressed: (){
-              Get.off(()=>TeacherHome());
+              Get.to(()=>TeacherHome());
              }, child:Text('Back')),
           ],
         ),
@@ -84,10 +84,10 @@ class _homeWorkState extends State<homeWork> {
   Future<void> pubishHomework() async{
     if(cls_cntrl.text.isNotEmpty&&div_cntrl.text.isNotEmpty&&sub_cntrl.text.isNotEmpty&&wrk_cntrl.text.isNotEmpty){
       await data.add({
-        'Class':cls_cntrl.text,
-        'Division':div_cntrl.text,
-        'Subject':sub_cntrl.text,
-        'Work':wrk_cntrl.text,
+        'Class':cls_cntrl.text.toUpperCase(),
+        'Division':div_cntrl.text.toUpperCase(),
+        'Subject':sub_cntrl.text.toUpperCase(),
+        'Work':wrk_cntrl.text.toUpperCase(),
       }).then((value){
        print('Add successfully');
        cls_cntrl.clear();

@@ -2,21 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:project/student/StudHome.dart';
+import 'package:project/teacher/TeacherHome.dart';
+
+import 'AnnualExam.dart';
+import 'FirstExam.dart';
+import 'SecondExam.dart';
 
 
 void main(){
-  runApp(MaterialApp(home: StudExam(),));
-}
+   runApp(MaterialApp(home: Exam(),));
+ }
 
 
 
-class StudExam extends StatefulWidget{
+ class Exam extends StatefulWidget{
   @override
-  State<StudExam> createState() => _StudExam();
+  State<Exam> createState() => _ExamState();
 }
 
-class _StudExam extends State<StudExam> {
+class _ExamState extends State<Exam> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +34,7 @@ class _StudExam extends State<StudExam> {
             SizedBox(height: 40,),
             InkWell(
               onTap: (){
-
+                Get.to(()=>FirstExam());
               },
               child: Card(color: Colors.cyan,
                 child: Container(height: 50,width: 100,
@@ -41,7 +45,7 @@ class _StudExam extends State<StudExam> {
             SizedBox(height: 20,),
             InkWell(
               onTap: (){
-
+                Get.to(()=>SecondExam());
               },
               child: Card(color: Colors.purpleAccent[200],
                 child: Container(height: 50,width: 100,
@@ -52,7 +56,7 @@ class _StudExam extends State<StudExam> {
             SizedBox(height: 20,),
             InkWell(
               onTap: (){
-
+                Get.to(()=>AnnualExam());
               },
               child: Card(color: Colors.greenAccent[200],
                 child: Container(height: 50,width: 100,
@@ -62,7 +66,7 @@ class _StudExam extends State<StudExam> {
             ),
             SizedBox(height: 50,),
             ElevatedButton(onPressed: (){
-              Get.to(()=>StudHome());
+              Get.to(()=>TeacherHome());
             }, child:Text('Back'))
           ],
         ),
